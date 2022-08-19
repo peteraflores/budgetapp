@@ -11,16 +11,16 @@ def hello():
 
 @app.route('/poop')
 def poop():
-    return os.environ['DB_NAME']
-    # try:
-    #     with connect(
-    #         host="localhost",
-    #         user=input("Enter username: "),
-    #         password=getpass("Enter password: "),
-    #     ) as connection:
-    #         print(connection)
-    # except Error as e:
-    #     print(e)
+    #return os.environ['DB_NAME']
+    try:
+        with connect(
+            host=os.environ["DB_HOST"],
+            user=os.environ["DB_USER"],
+            password=os.environ["DB_PASS"],
+        ) as connection:
+            return str(connection)
+    except Error as e:
+        return str(e)
 
 
 if __name__ == '__main__':
